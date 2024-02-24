@@ -13,7 +13,7 @@
     font-style: normal;
 
     src: url('/css/fonts/slick.eot');
-    src: url('/css/fonts/slick.eot%3F') format('embedded-opentype'), url('/css/fonts/slick.woff') format('woff'), url('/css/fonts/slick.ttf') format('truetype'), url('/css/fonts/slick.svg') format('svg');
+    src: url('/css/fonts/slick.eot') format('embedded-opentype'), url('/css/fonts/slick.woff') format('woff'), url('/css/fonts/slick.ttf') format('truetype'), url('/css/fonts/slick.svg') format('svg');
 }
 /* Arrows */
 .slick-prev,
