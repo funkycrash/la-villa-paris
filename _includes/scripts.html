@@ -1,0 +1,20 @@
+<script type="text/javascript">
+    $("[data-localize]").localize("translation/localize");
+
+    function changeLang(lang) {
+        $("[data-localize]").localize("translation/localize", { language: lang });
+    }
+</script>
+
+
+<!-- // TODO: Check if this is the right tag -->
+<script>
+    (function (b, o, i, l, e, r) {
+        b.GoogleAnalyticsObject = l; b[l] || (b[l] =
+            function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
+        e = o.createElement(i); r = o.getElementsByTagName(i)[0];
+        e.src = '//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e, r)
+    }(window, document, 'script', 'ga'));
+    ga('create', 'UA-1784919-1'); ga('send', 'pageview');
+</script>

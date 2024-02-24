@@ -1,0 +1,20 @@
+<div id="header">
+
+    <!-- Logo -->
+    <h1><a data-localize="header" href="/" id="logo">La Villa Paris <em>La Villa Paris - Chambres d'hôtes à
+                Paris</em></a></h1>
+
+    <!-- Nav -->
+    <nav id="nav">
+        <ul>
+            <li class="index {% if page.layout == 'home' %}current{% endif %}"><a data-localize="accueil"
+                    href="/">Accueil</a></li>
+            <li class="chambres {% if page.layout == 'chambres' %}current{% endif %}"><a data-localize="chambres"
+                    href="/chambres">Chambres</a></li>
+            <li class="photos {% if page.layout == 'photos' %}current{% endif %}"><a data-localize="Photos"
+                    href="/photos">Photos</a></li>
+            <li class="reservation {% if page.layout == 'reservation' %}current{% endif %}"><a
+                    data-localize="reservation" href="/reservation">Reservation</a></li>
+        </ul>
+    </nav>
+</div>
