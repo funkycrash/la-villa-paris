@@ -26,3 +26,51 @@
         $("[data-localize]").localize("translation/localize", { language: lang });
     }
 </script>
+
+{% if page.layout == 'photos' %}
+<script type="text/javascript">
+	$( document ).ready(function() {
+		var options = {
+			slidesToShow: 3,
+			dots: false,
+			lazyLoad: 'progressive',
+			responsive: [
+			{
+				breakpoint: 1024,
+				settings: {
+					arrows: false,
+					centerMode: true,
+					centerPadding: '40px',
+					slidesToShow: 2
+				}
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					arrows: false,
+					centerMode: true,
+					centerPadding: '40px',
+					slidesToShow: 1
+				}
+			},
+			{
+				breakpoint: 480,
+				settings: {
+					arrows: false,
+					centerMode: true,
+					centerPadding: '40px',
+					slidesToShow: 1
+				}
+			}
+			]
+		}
+		$('.slideshow-la-villa-paris').slick(options);
+		$('.slideshow-champs-elysees').slick(options);
+		$('.slideshow-concorde').slick(options);
+		$('.slideshow-bastille').slick(options);
+		$('.slideshow-opera').slick(options);
+		$('.slideshow-petit-opera').slick(options);
+		$('.slideshow-certificats').slick(options);
+	});
+</script>
+{% endif %}
