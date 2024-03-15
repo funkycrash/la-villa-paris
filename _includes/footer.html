@@ -41,7 +41,7 @@
 			</section>
 			<section class="6u 12u(narrower)">
 				<h3>Contact</h3>
-				<form method="post" netlify-honeypot="bot-field" netlify id="contact">
+				<form method="post" netlify-honeypot="gender" netlify id="contact" action="/merci">
 					<div class="row 50%">
 						<div class="6u 12u(mobilep)">
 							<input type="text" name="name" id="name" placeholder="Nom" data-localize="form.nom"
@@ -60,10 +60,8 @@
 							<textarea name="message" id="message" placeholder="Message" rows="5" required></textarea>
 						</div>
 					</div>
-					<p style="display: none;">
-						<label>
-							Don't fill this out if you're human: <input name="bot-field" />
-						</label>
+					<p class="gender">
+						<input type="text" name="gender" id="gender" placeholder="gender" />
 					</p>
 					<div class="row 50%">
 						<div class="12u">

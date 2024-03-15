@@ -52,5 +52,7 @@
 	"form": {
 		"nom": "Nombre",
 		"envoyer": "Enviar"
-	}
+	},
+	"thankyou": "Gracias por su mensaje",
+	"thankyoumsg": "Gracias por su mensaje. Nos pondremos en contacto con usted lo antes posible."
 }
