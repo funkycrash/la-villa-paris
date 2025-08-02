@@ -15,7 +15,23 @@
   # Ruby version (adjust if needed)
   RUBY_VERSION = "3.0"
 
-# Redirects and rewrites (alternative to _redirects file)
+# Force HTTPS and canonical URLs
+[[redirects]]
+  from = "http://www.la-villa-paris.com/*"
+  to = "https://la-villa-paris.com/:splat"
+  status = 301
+
+[[redirects]]
+  from = "https://www.la-villa-paris.com/*"
+  to = "https://la-villa-paris.com/:splat"
+  status = 301
+
+[[redirects]]
+  from = "http://la-villa-paris.com/*"
+  to = "https://la-villa-paris.com/:splat"
+  status = 301
+
+# Redirect old language-specific URLs to main site
 [[redirects]]
   from = "/index_en.html"
   to = "/"
@@ -31,6 +47,12 @@
   to = "/"
   status = 301
 
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+# Redirect old photo gallery URLs to new photos page
 [[redirects]]
   from = "/Photo_Gallery/*"
   to = "/photos"

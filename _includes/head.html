@@ -7,6 +7,17 @@
 	<meta name="keywords" content="La Villa Paris, chambres d'hôtes de luxe à Paris" />
 	<meta name="owner" content="owner">
 	<meta name="author" content="La Villa Paris">
+	
+	<!-- Canonical URL to prevent duplicate content issues -->
+	<link rel="canonical" href="https://la-villa-paris.com{{ page.url | replace: '/index.html', '/' }}" />
+	
+	<!-- Open Graph tags for better social sharing -->
+	<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}La Villa Paris - Bed and Breakfast in Paris{% endif %}" />
+	<meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Chambres d'hôtes à Paris, La Villa Paris, 4 chambres d hotes de luxe vous permettent de passer vos vacances dans un hôtel romantique{% endif %}" />
+	<meta property="og:url" content="https://la-villa-paris.com{{ page.url | replace: '/index.html', '/' }}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="La Villa Paris" />
+	
 	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/jquery.dropotron.min.js"></script>
@@ -15,6 +26,7 @@
 	<script src="/js/init.js"></script>
 	<script src="/js/slick.min.js"></script>
 	<script src="/js/jquery.localize.js"></script>
+	<script src="/js/canonical-redirect.js"></script>
 
 	<link rel="preload" as="image" href="/images/banner-homepage.jpg" />
 	<noscript>

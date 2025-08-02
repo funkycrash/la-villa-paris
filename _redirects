@@ -1,24 +1,31 @@
+# Force HTTPS and non-www (canonical URLs)
+http://www.la-villa-paris.com/* https://la-villa-paris.com/:splat 301
+https://www.la-villa-paris.com/* https://la-villa-paris.com/:splat 301
+http://la-villa-paris.com/* https://la-villa-paris.com/:splat 301
+
 # Redirect old language-specific URLs to main site
 /index_en.html / 301
 /index_de.html / 301
 /index_fr.html / 301
+/index.html / 301
 
 # Redirect old photo gallery URLs to new photos page
 /Photo_Gallery/ /photos 301
 /Photo_Gallery/index_lvp.html /photos 301
 /Photo_Gallery/* /photos 301
 
-# Redirect old www URLs to non-www (if you prefer non-www)
-# Uncomment if you want to redirect www to non-www
-# https://www.la-villa-paris.com/* https://la-villa-paris.com/:splat 301
-
-# Handle common tracking parameters by stripping them
-# This prevents 500 errors from malformed tracking URLs
+# Handle tracking parameters by serving the page without them (200 status)
+# This prevents redirects and keeps the URL indexed
 /*?gclid=* /:splat 200
 /*?utm_* /:splat 200
 /*?sa=* /:splat 200
 /*?ved=* /:splat 200
 /*?yandex-source=* /:splat 200
+
+# Handle multiple tracking parameters
+/*?gclid=*&* /:splat?$2 200
+/*?sa=*&* /:splat?$2 200
+/*?ved=*&* /:splat?$2 200
 
 # Fallback for any other 404s to main page
 /* / 404 
