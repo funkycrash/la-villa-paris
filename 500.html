@@ -1,5 +1,5 @@
 ---
-permalink: /404.html
+permalink: /500.html
 layout: default
 ---
 
@@ -15,7 +15,7 @@ layout: default
     font-size: 4em;
     line-height: 1;
     letter-spacing: -1px;
-    color: #666;
+    color: #d32f2f;
   }
   .error-message {
     margin: 30px 0;
@@ -38,21 +38,41 @@ layout: default
   .navigation-links a:hover {
     background-color: #45a049;
   }
-  .search-suggestion {
+  .contact-info {
     margin: 30px 0;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
   }
+  .retry-button {
+    margin: 20px 0;
+  }
+  .retry-button button {
+    padding: 12px 24px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+  }
+  .retry-button button:hover {
+    background-color: #1976D2;
+  }
 </style>
 
 <div class="container">
-  <h1>404</h1>
+  <h1>500</h1>
 
   <div class="error-message">
-    <p><strong>Page non trouvée / Page not found</strong></p>
-    <p>La page demandée n'existe pas ou a été déplacée.</p>
-    <p>The requested page does not exist or has been moved.</p>
+    <p><strong>Erreur serveur / Server Error</strong></p>
+    <p>Une erreur s'est produite sur notre serveur. Veuillez réessayer dans quelques instants.</p>
+    <p>An error occurred on our server. Please try again in a few moments.</p>
+  </div>
+
+  <div class="retry-button">
+    <button onclick="window.location.reload()">Réessayer / Retry</button>
   </div>
 
   <div class="navigation-links">
@@ -63,9 +83,10 @@ layout: default
     <a href="/about/">À propos / About</a>
   </div>
 
-  <div class="search-suggestion">
-    <h3>Vous cherchez quelque chose de spécifique ? / Looking for something specific?</h3>
-    <p>Utilisez notre <a href="/sitemap">plan du site</a> pour naviguer facilement.</p>
-    <p>Use our <a href="/sitemap">sitemap</a> to navigate easily.</p>
+  <div class="contact-info">
+    <h3>Besoin d'aide ? / Need help?</h3>
+    <p>Si le problème persiste, n'hésitez pas à nous contacter.</p>
+    <p>If the problem persists, please don't hesitate to contact us.</p>
+    <p><strong>La Villa Paris</strong> - Bed and breakfast à Paris depuis 2007</p>
   </div>
-</div>
+</div> 

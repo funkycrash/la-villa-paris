@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://la-villa-paris.com/sitemap.xml
+
+# Disallow admin and system files
+Disallow: /_site/
+Disallow: /.git/
+Disallow: /.sass-cache/
+Disallow: /.jekyll-cache/
+Disallow: /Gemfile
+Disallow: /Gemfile.lock 
