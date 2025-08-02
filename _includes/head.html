@@ -90,6 +90,13 @@
 	
 	<!-- Load JavaScript after CSS -->
 	<script src="/js/jquery.min.js"></script>
+	<script>
+		// Ensure jQuery is loaded before other scripts
+		if (typeof jQuery === 'undefined') {
+			// Fallback to CDN
+			document.write('<script src="https://code.jquery.com/jquery-1.11.3.min.js"><\/script>');
+		}
+	</script>
 	<script src="/js/jquery.dropotron.min.js"></script>
 	<script src="/js/skel.min.js"></script>
 	<script src="/js/skel-layers.min.js"></script>
