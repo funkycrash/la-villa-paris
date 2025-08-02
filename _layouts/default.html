@@ -3,9 +3,11 @@
 
     {% include head.html %}
 
-    {% include header.html %}
+    <body class="js-loading">
+        <!-- Loading indicator -->
+        <div class="loading-indicator"></div>
 
-    <body>
+        {% include header.html %}
 
         {{content}}
 
@@ -13,5 +15,18 @@
 
         {% include scripts.html %}
         
+        <!-- Show content when everything is loaded -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.body.classList.remove('js-loading');
+                document.body.classList.add('js-loaded');
+            });
+            
+            // Fallback: show content after 3 seconds even if DOMContentLoaded doesn't fire
+            setTimeout(function() {
+                document.body.classList.remove('js-loading');
+                document.body.classList.add('js-loaded');
+            }, 3000);
+        </script>
     </body>
 </html>

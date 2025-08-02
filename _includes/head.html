@@ -25,7 +25,70 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="La Villa Paris" />
 	
+	<!-- Critical CSS to prevent FOUC -->
+	<style type="text/css">
+		/* Hide content until CSS is loaded */
+		.js-loading { visibility: hidden; }
+		.js-loaded { visibility: visible; }
+		
+		/* Basic layout to prevent layout shift */
+		body { margin: 0; padding: 0; font-family: 'Source Sans Pro', sans-serif; }
+		#header { position: relative; }
+		.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+		
+		/* Hide form fields */
+		#username { display: none; }
+		.gender { display: none; }
+		
+		/* Loading indicator */
+		.loading-indicator {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			background: #f0f0f0;
+			z-index: 9999;
+		}
+		.loading-indicator::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 0;
+			background: #4CAF50;
+			animation: loading 2s ease-in-out infinite;
+		}
+		@keyframes loading {
+			0% { width: 0; }
+			50% { width: 70%; }
+			100% { width: 100%; }
+		}
+	</style>
+	
+	<!-- Load CSS immediately -->
+	<link href="/css/skel.css" rel="stylesheet" />
+	<link href="/css/style.css" rel="stylesheet" />
+	<link href="/css/style-wide.css" rel="stylesheet" />
+	<link href="/css/slick.css" rel="stylesheet" />
+	<link href="/css/slick-theme.css" rel="stylesheet" />
+	
+	<!-- Fallback for browsers that don't support preload -->
+	<noscript>
+		<link href="/css/skel.css" rel="stylesheet" />
+		<link href="/css/style.css" rel="stylesheet" />
+	</noscript>
+	
+	<!-- Load fonts -->
 	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+	
+	<!-- Preload critical resources -->
+	<link rel="preload" as="image" href="/images/banner-homepage.jpg" />
+	<link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="/css/skel.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	
+	<!-- Load JavaScript after CSS -->
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/jquery.dropotron.min.js"></script>
 	<script src="/js/skel.min.js"></script>
@@ -33,26 +96,8 @@
 	<script src="/js/init.js"></script>
 	<script src="/js/slick.min.js"></script>
 	<script src="/js/jquery.localize.js"></script>
-
-	<link rel="preload" as="image" href="/images/banner-homepage.jpg" />
-	<noscript>
-		<link href="/css/skel.css" />
-		<link href="/css/style.css" />
-		<link href="/css/style-wide.css" />
-		<link href="/css/slick.css" />
-		<link href="/css/slick-theme.css" />
-	</noscript>
+	
 	<!--[if lte IE 8]><link rel="stylesheet" href="/css/ie/v8.css" /><![endif]-->
-	<style type="text/css">
-		#username {
-			display: none;
-		}
-		.gender {
-			display: none;
-		}
-
-		/*bot trap*/
-	</style>
 	<!-- Google tag (gtag.js) -->
 	<script async src="//www.googletagmanager.com/gtag/js?id=G-DJWKTQZN30"></script>
 	<script> window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-DJWKTQZN30'); </script>
