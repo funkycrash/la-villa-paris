@@ -49,6 +49,7 @@
 			height: 3px;
 			background: #f0f0f0;
 			z-index: 9999;
+			transition: opacity 0.3s ease-out;
 		}
 		.loading-indicator::after {
 			content: '';
@@ -57,13 +58,19 @@
 			left: 0;
 			height: 100%;
 			width: 0;
-			background: #4CAF50;
-			animation: loading 2s ease-in-out infinite;
+			background: #474747;
+			animation: loading 1.5s ease-in-out infinite;
 		}
 		@keyframes loading {
 			0% { width: 0; }
 			50% { width: 70%; }
 			100% { width: 100%; }
+		}
+		
+		/* Hide loading indicator when content is loaded */
+		.js-loaded .loading-indicator {
+			opacity: 0;
+			pointer-events: none;
 		}
 	</style>
 	

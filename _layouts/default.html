@@ -17,16 +17,29 @@
         
         <!-- Show content when everything is loaded -->
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            function hideLoadingIndicator() {
                 document.body.classList.remove('js-loading');
                 document.body.classList.add('js-loaded');
-            });
+                // Hide the loading indicator element
+                var loadingIndicator = document.querySelector('.loading-indicator');
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+            }
             
-            // Fallback: show content after 3 seconds even if DOMContentLoaded doesn't fire
-            setTimeout(function() {
-                document.body.classList.remove('js-loading');
-                document.body.classList.add('js-loaded');
-            }, 3000);
+            // Try to hide loading indicator when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', hideLoadingIndicator);
+            } else {
+                // DOM is already loaded
+                hideLoadingIndicator();
+            }
+            
+            // Fallback: hide loading indicator after 2 seconds
+            setTimeout(hideLoadingIndicator, 2000);
+            
+            // Additional fallback: hide when window loads
+            window.addEventListener('load', hideLoadingIndicator);
         </script>
     </body>
 </html>
