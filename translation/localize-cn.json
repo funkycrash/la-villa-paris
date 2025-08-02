@@ -50,7 +50,11 @@
 	"planparis": "位置",
 	"metro": "地铁地图",
 	"form": {
-		"nom": "Name",
-		"envoyer": "Send the message"
+		"nom": "名字",
+		"envoyer": "发送"
 	},
+	"nosprix": "我们的价格和奖项",
+	"citespar": "",
+	"thankyou": "感谢您的来信",
+	"thankyoumsg": "我们会尽快与您联系"
 }
