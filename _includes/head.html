@@ -9,12 +9,19 @@
 	<meta name="author" content="La Villa Paris">
 	
 	<!-- Canonical URL to prevent duplicate content issues -->
-	<link rel="canonical" href="https://la-villa-paris.com{{ page.url | replace: '/index.html', '/' }}" />
+	{% assign canonical_url = page.url | replace: '/index.html', '/' | replace: '/index_en.html', '/' | replace: '/index_de.html', '/' | replace: '/index_fr.html', '/' %}
+	{% if canonical_url == '' %}{% assign canonical_url = '/' %}{% endif %}
+	<link rel="canonical" href="https://la-villa-paris.com{{ canonical_url }}" />
+	
+	<!-- Hreflang tags for international SEO -->
+	<link rel="alternate" hreflang="fr" href="https://la-villa-paris.com{{ canonical_url }}" />
+	<link rel="alternate" hreflang="en" href="https://la-villa-paris.com{{ canonical_url }}" />
+	<link rel="alternate" hreflang="x-default" href="https://la-villa-paris.com{{ canonical_url }}" />
 	
 	<!-- Open Graph tags for better social sharing -->
 	<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}La Villa Paris - Bed and Breakfast in Paris{% endif %}" />
 	<meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Chambres d'hôtes à Paris, La Villa Paris, 4 chambres d hotes de luxe vous permettent de passer vos vacances dans un hôtel romantique{% endif %}" />
-	<meta property="og:url" content="https://la-villa-paris.com{{ page.url | replace: '/index.html', '/' }}" />
+	<meta property="og:url" content="https://la-villa-paris.com{{ canonical_url }}" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="La Villa Paris" />
 	
@@ -26,7 +33,6 @@
 	<script src="/js/init.js"></script>
 	<script src="/js/slick.min.js"></script>
 	<script src="/js/jquery.localize.js"></script>
-	<script src="/js/canonical-redirect.js"></script>
 
 	<link rel="preload" as="image" href="/images/banner-homepage.jpg" />
 	<noscript>

@@ -31,7 +31,7 @@
   to = "https://la-villa-paris.com/:splat"
   status = 301
 
-# Redirect old language-specific URLs to main site
+# Redirect old language URLs to main site
 [[redirects]]
   from = "/index_en.html"
   to = "/"
@@ -52,36 +52,13 @@
   to = "/"
   status = 301
 
-# Redirect old photo gallery URLs to new photos page
+# Redirect old photo gallery to photos page
 [[redirects]]
   from = "/Photo_Gallery/*"
   to = "/photos"
   status = 301
 
-# Handle tracking parameters
-[[redirects]]
-  from = "/*"
-  to = "/:splat"
-  status = 200
-  conditions = {Query = {gclid = "*"}}
 
-[[redirects]]
-  from = "/*"
-  to = "/:splat"
-  status = 200
-  conditions = {Query = {sa = "*"}}
-
-[[redirects]]
-  from = "/*"
-  to = "/:splat"
-  status = 200
-  conditions = {Query = {ved = "*"}}
-
-[[redirects]]
-  from = "/*"
-  to = "/:splat"
-  status = 200
-  conditions = {Query = {yandex_source = "*"}}
 
 # Custom headers for security and performance
 [[headers]]
