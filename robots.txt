@@ -10,4 +10,27 @@ Disallow: /.git/
 Disallow: /.sass-cache/
 Disallow: /.jekyll-cache/
 Disallow: /Gemfile
-Disallow: /Gemfile.lock 
+Disallow: /Gemfile.lock
+
+# Disallow old URLs that cause 500 errors
+Disallow: /index_en.html
+Disallow: /index_de.html
+Disallow: /index_fr.html
+Disallow: /Photo_Gallery/
+Disallow: /Photo_Gallery/index_lvp.html
+
+# Disallow tracking parameters to prevent 500 errors
+Disallow: /*?gclid=
+Disallow: /*?utm_
+Disallow: /*?sa=
+Disallow: /*?ved=
+Disallow: /*?yandex-source=
+
+# Allow specific file types
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.pdf$
+Allow: /*.css$
+Allow: /*.js$ 
