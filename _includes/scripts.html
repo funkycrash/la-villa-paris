@@ -3,21 +3,36 @@
 
 <!-- Les bibliothèques JS (jquery, skel, init, localize) sont chargées dans head.html, ne pas les recharger ici -->
 <script type="text/javascript">
-    // Traduction automatique au chargement selon la langue du navigateur.
+    // Langue choisie via un drapeau lors d'une visite précédente (mémorisée par changeLang)
+    var savedLang = null;
+    try { savedLang = localStorage.getItem('lang'); } catch (error) { }
+
+    // Traduction automatique au chargement : langue mémorisée, sinon langue du navigateur.
     // Ne pas passer d'option "callback" ici : le plugin lui délèguerait
     // l'application des traductions et la page resterait en français.
     try {
-        $("[data-localize]").localize("translation/localize", {
-            timeout: 3000,
-            // Le contenu des pages est déjà en français : inutile de télécharger
-            // des traductions pour les navigateurs français
-            skipLanguage: /^fr/
-        });
+        if (savedLang && savedLang !== 'fr') {
+            $("[data-localize]").localize("translation/localize", {
+                language: savedLang,
+                timeout: 3000
+            });
+        } else if (!savedLang) {
+            $("[data-localize]").localize("translation/localize", {
+                // Langue sur 2 lettres : évite que le plugin tente aussi
+                // localize-en-US.json (fichier régional inexistant, 404)
+                language: (navigator.language || navigator.userLanguage || 'fr').substring(0, 2),
+                timeout: 3000,
+                // Le contenu des pages est déjà en français : inutile de télécharger
+                // des traductions pour les navigateurs français
+                skipLanguage: /^fr/
+            });
+        }
     } catch (error) {
         console.log('Localization failed to load, continuing without translations');
     }
 
     function changeLang(lang) {
+        try { localStorage.setItem('lang', lang); } catch (error) { }
         try {
             $("[data-localize]").localize("translation/localize", {
                 language: lang,
@@ -43,9 +58,9 @@
             baseChangeLang(lang);
             showFaqLang(lang);
         };
-        // Le reste de la page se traduit automatiquement selon la langue du
-        // navigateur (appel localize() initial ci-dessus) : la FAQ s'aligne dessus.
-        showFaqLang((navigator.language || navigator.userLanguage || 'fr').substring(0, 2));
+        // Le reste de la page se traduit automatiquement (langue mémorisée, sinon
+        // langue du navigateur, voir plus haut) : la FAQ s'aligne dessus.
+        showFaqLang(savedLang || (navigator.language || navigator.userLanguage || 'fr').substring(0, 2));
     })();
 </script>
 {% endif %}

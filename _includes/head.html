@@ -1,12 +1,17 @@
 <head>
-	<title>La Villa Paris - Bed and Breakfast in Paris - Official Website</title>
+	<title>{% case page.layout %}{% when 'chambres' %}Chambres / Rooms - La Villa Paris{% when 'photos' %}Photos - La Villa Paris{% when 'faq' %}FAQ - La Villa Paris{% when 'reservation' %}Réservation / Booking - La Villa Paris{% when 'legal' %}Mentions légales - La Villa Paris{% when 'merci' %}Merci - La Villa Paris{% else %}La Villa Paris - Bed and Breakfast in Paris - Official Website{% endcase %}</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description"
-		content="Chambres d'hôtes à Paris , La Villa Paris , 4 chambres d hotes de luxe vous permettent de passer vos vacances dans un hôtel romantique, ou vous pouvez découvrir la vie parisienne." />
+		content="Chambres d'hôtes à Paris , La Villa Paris , 5 chambres d'hôtes de luxe vous permettent de passer vos vacances dans un hôtel romantique, ou vous pouvez découvrir la vie parisienne." />
 	<meta name="keywords" content="La Villa Paris, chambres d'hôtes de luxe à Paris" />
 	<meta name="owner" content="owner">
 	<meta name="author" content="La Villa Paris">
+
+	<!-- Favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="32x32">
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	
 	<!-- Canonical URL to prevent duplicate content issues -->
 	{% assign canonical_url = page.url | replace: '/index.html', '/' | replace: '/index_en.html', '/' | replace: '/index_de.html', '/' | replace: '/index_fr.html', '/' %}
@@ -20,7 +25,7 @@
 	
 	<!-- Open Graph tags for better social sharing -->
 	<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}La Villa Paris - Bed and Breakfast in Paris{% endif %}" />
-	<meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Chambres d'hôtes à Paris, La Villa Paris, 4 chambres d hotes de luxe vous permettent de passer vos vacances dans un hôtel romantique{% endif %}" />
+	<meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Chambres d'hôtes à Paris, La Villa Paris, 5 chambres d'hôtes de luxe vous permettent de passer vos vacances dans un hôtel romantique{% endif %}" />
 	<meta property="og:url" content="https://la-villa-paris.com{{ canonical_url }}" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="La Villa Paris" />
@@ -31,9 +36,9 @@
 		.gender { display: none; }
 	</style>
 
-	<!-- CSS (font-awesome avant style.css, qui l'importait avant en série) -->
+	<!-- CSS (fonts.css : police auto-hébergée ; les icônes sont des SVG inline dans style.css) -->
 	<link href="/css/skel.css" rel="stylesheet" />
-	<link href="/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="/css/fonts.css" rel="stylesheet" />
 	<link href="/css/style.css" rel="stylesheet" />
 	<link href="/css/style-wide.css" rel="stylesheet" />
 	{% if page.layout == 'photos' %}
@@ -41,12 +46,35 @@
 	<link href="/css/slick-theme.css" rel="stylesheet" />
 	{% endif %}
 
-	<!-- Polices -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap' rel='stylesheet' type='text/css'>
+	<!-- Police auto-hébergée (voir css/fonts.css) : préchargement du fichier principal -->
+	<link rel="preload" as="font" type="font/woff2" href="/fonts/source-sans-pro-400-latin.woff2" crossorigin>
 	{% if page.layout == 'home' %}
 	<link rel="preload" as="image" href="/images/banner-homepage.jpg" />
+	<!-- Fiche établissement pour Google (résultats enrichis) -->
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "BedAndBreakfast",
+	  "name": "La Villa Paris",
+	  "url": "https://la-villa-paris.com/",
+	  "telephone": "+33673623845",
+	  "email": "contact@la-villa-paris.com",
+	  "image": "https://la-villa-paris.com/images/banner-homepage.jpg",
+	  "numberOfRooms": 5,
+	  "priceRange": "100€-200€",
+	  "address": {
+	    "@type": "PostalAddress",
+	    "streetAddress": "33 rue de la Fontaine à Mulard",
+	    "addressLocality": "Paris",
+	    "postalCode": "75013",
+	    "addressCountry": "FR"
+	  },
+	  "amenityFeature": [
+	    { "@type": "LocationFeatureSpecification", "name": "Climatisation", "value": true },
+	    { "@type": "LocationFeatureSpecification", "name": "WiFi gratuit", "value": true }
+	  ]
+	}
+	</script>
 	{% endif %}
 
 	<!-- JavaScript : skel/init doivent s'exécuter avant le rendu (ils injectent le CSS responsive),

@@ -13,9 +13,11 @@
 			wide:		{ range: '-1680', href: 'css/style-wide.css', containers: 1200, grid: { gutters: 40 } },
 			normal:		{ range: '-1280', href: 'css/style-normal.css', containers: 960, grid: { gutters: 30 }, viewport: { scalable: false } },
 			narrow:		{ range: '-980', href: 'css/style-narrow.css', containers: '95%' },
-			narrower:	{ range: '-840', href: 'css/style-narrower.css', containers: '95%!'},
-			mobile:		{ range: '-736', href: 'css/style-mobile.css', containers: '90%!', grid: { gutters: 20 } },
-			mobilep:	{ range: '-480', href: 'css/style-mobilep.css', containers: '100%' }
+			// narrower/mobile/mobilep : pas de href, les fichiers css correspondants
+			// n'ont jamais existé (chaque visite mobile déclenchait des 404)
+			narrower:	{ range: '-840', containers: '95%!'},
+			mobile:		{ range: '-736', containers: '90%!', grid: { gutters: 20 } },
+			mobilep:	{ range: '-480', containers: '100%' }
 		},
 		plugins: {
 			layers: {
