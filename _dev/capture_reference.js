@@ -3,7 +3,7 @@
 const fs = require("fs");
 const puppeteer = require("puppeteer-core");
 
-const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const CHROME = process.env.CHROME_BIN || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const BASE = "http://127.0.0.1:8642";
 const SCRATCH = __dirname;
 const TAG = process.argv[2] || "before";

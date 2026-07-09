@@ -8,6 +8,10 @@ Usage : {% include gallery.html folder="bastille" alt="Chambre Bastille" %}
 	{% for i in (1..30) %}
 	{% capture ipath %}/images/photogallery/{{ include.folder }}/image{{ i }}.jpg{% endcapture %}
 	{% assign f = site.static_files | where: "path", ipath | first %}
+	{% unless f %}{% comment %} .JPG : extension majuscule fréquente à l'upload {% endcomment %}
+	{% capture ipath %}/images/photogallery/{{ include.folder }}/image{{ i }}.JPG{% endcapture %}
+	{% assign f = site.static_files | where: "path", ipath | first %}
+	{% endunless %}
 	{% if f %}<img src="{{ ipath }}" loading="lazy" alt="{{ include.alt }} {{ i }}" />{% endif %}
 	{% endfor %}
 </div>

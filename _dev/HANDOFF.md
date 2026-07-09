@@ -43,21 +43,24 @@ PAS ENTIÈREMENT VÉRIFIÉES (voir "Reste à faire").
 
 ## Reste à faire (dans l'ordre)
 
-1. **Réécrire `_dev/preview_test.js`** : c'est encore l'ANCIENNE version (elle teste
-   `changeLang`/localStorage qui n'existent plus). À tester sur la nouvelle architecture :
-   - `/` fr, `/en/` anglais serveur (texte "Rooms" dans le HTML brut), `/de/chambres` allemand,
-     `/zh/faq` chinois + JSON-LD FAQPage valide par langue, drapeaux = liens corrects.
-   - Mobile 375px : hamburger (label/checkbox) ouvre le menu, padding latéral, pas de
-     recouvrement (44px), pas de défilement horizontal.
-   - Grille : comparer les métriques avec `_dev/metrics-before.json` (capture AVANT la
-     dé-skellisation, via `_dev/capture_reference.js`). Tolérance quelques px. Attention :
-     `row-gap` ajouté dans layout.css = espacement vertical nouveau quand les colonnes
-     s'empilent, à valider visuellement (l'ancien skel n'en avait pas, les blocs se touchaient).
-   - Photos : ~101 images, scroll-snap fonctionne.
-   - Zéro requête JS, zéro 404 local, zéro erreur console.
-2. **Vérifs déjà faites** (spot-checks à l'assemblage, pas encore en navigateur) :
+1. ~~Réécrire `_dev/preview_test.js`~~ **FAIT (session du 2026-07-09)** : suite réécrite pour
+   la nouvelle architecture, tout passe (langues serveur, FAQPage par langue, drapeaux,
+   hamburger, grille vs metrics-before ±6px, scroll-snap, zéro JS/404/console).
+   Trois bugs réels trouvés et corrigés par la même occasion :
+   - `css/skel.css` contenait encore les sections Container/Grid statiques de skel
+     (gouttières figées 40/80/20px, sélecteurs échappés `.row.\32 00\25` plus spécifiques
+     que layout.css) : les lignes `200%`/`50%` avaient une gouttière de 80/20px à TOUTES
+     les largeurs. Réduit au reset + box model.
+   - `layout.css` était chargé AVANT `style.css`, donc le menu mobile ouvert s'affichait
+     avec le style desktop (`display:inline-block`, losange jaune). layout.css est
+     maintenant le dernier CSS chargé dans head.html (+ `.container` ne touche plus
+     qu'aux marges horizontales pour ne pas écraser le margin-bottom de style-normal.css).
+   - `images/photogallery/la-villa-paris/image3.JPG` (extension majuscule) était
+     silencieusement ignorée par la galerie : renommée en .jpg, et gallery.html accepte
+     désormais aussi `.JPG` (uploads d'appareil photo).
+2. **Vérifs déjà faites** (spot-checks à l'assemblage + suite navigateur complète) :
    de/chambres contient "Zimmer" et les prix allemands, zh/faq contient 常见问题,
-   photos.html contient 101 images, hreflang présents.
+   photos.html contient 101 images (95 en galeries), hreflang présents.
 3. **Deploy preview Netlify** (ouvrir une PR modernize → main) : vérifier les redirections
    Accept-Language (curl -H "Accept-Language: en" doit donner 302 → /en/), le build Jekyll
    réel (le banc local simule Liquid, il ne remplace pas un vrai build), et les 5 langues.
@@ -82,8 +85,10 @@ et côté node : `npm install puppeteer-core jsdom` (+ Google Chrome installé).
 - `serve_preview.py 8642` : sert preview/ en mappant `/chambres` → `chambres.html` (comme Netlify).
 - `capture_reference.js [tag]` : screenshots + métriques de grille (conteneur, colonnes)
   à 6 largeurs, écrit `metrics-<tag>.json`. `metrics-before.json` = état AVANT (généré sur
-  main au commit 6fa0468).
-- `preview_test.js` : suite navigateur (À RÉÉCRIRE, voir ci-dessus).
+  main au commit 6fa0468). `metrics-after.json` = état APRÈS, identique à ±1px.
+- `preview_test.js` : suite navigateur complète (réécrite, ~75 assertions, tout passe).
+  Sans Chrome installé, les deux scripts node trouvent seuls un Chromium (cache Playwright,
+  Brave) ; `CHROME_BIN` permet de forcer un binaire pour capture_reference.js.
 
 Pièges rencontrés (ne pas retomber dedans) :
 - Ruby : `$1`/`$2` sont écrasés par tout nouveau match (scan...) : capturer dans des locales

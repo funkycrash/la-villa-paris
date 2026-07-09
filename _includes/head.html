@@ -45,14 +45,15 @@
 		.gender { display: none; }
 	</style>
 
-	<!-- CSS : skel.css = reset ; layout.css = grille/menu mobile ; style-*.css = ajustements par palier -->
+	<!-- CSS : skel.css = reset ; style-*.css = ajustements par palier ;
+	     layout.css (grille/menu mobile) en dernier pour l'emporter sur le thème historique -->
 	<link href="/css/skel.css" rel="stylesheet" />
 	<link href="/css/fonts.css" rel="stylesheet" />
-	<link href="/css/layout.css" rel="stylesheet" />
 	<link href="/css/style.css" rel="stylesheet" />
 	<link href="/css/style-wide.css" rel="stylesheet" media="(max-width: 1680px)" />
 	<link href="/css/style-normal.css" rel="stylesheet" media="(max-width: 1280px)" />
 	<link href="/css/style-narrow.css" rel="stylesheet" media="(max-width: 980px)" />
+	<link href="/css/layout.css" rel="stylesheet" />
 
 	<!-- Police auto-hébergée (voir css/fonts.css) : préchargement du fichier principal -->
 	<link rel="preload" as="font" type="font/woff2" href="/fonts/source-sans-pro-400-latin.woff2" crossorigin>
