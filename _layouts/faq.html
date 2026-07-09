@@ -1,0 +1,50 @@
+---
+layout: default
+---
+<!-- Main -->
+<section class="wrapper style1">
+    <div class="container">
+        <div id="content">
+
+            <!-- Content : un bloc par langue, geré par le sélecteur de langue du site (voir scripts.html) -->
+            {% assign faqlangs = "fr,en,de,es,cn" | split: "," %}
+            {% for l in faqlangs %}
+            {% assign doc = site.faq | where: "lang", l | first %}
+            {% if doc %}
+            <article class="faq-lang" data-lang="{{ l }}"{% unless l == "fr" %} style="display:none"{% endunless %}>
+                {{ doc.content }}
+            </article>
+            {% endif %}
+            {% endfor %}
+
+            <footer>
+                <a href="/reservation" class="button" data-localize="book">Je Réserve</a>
+            </footer>
+        </div>
+    </div>
+</section>
+
+{% assign frdoc = site.faq | where: "lang", "fr" | first %}
+{% if frdoc %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- assign chunks = frdoc.content | split: '<h3' -%}
+    {%- for chunk in chunks offset: 1 -%}
+    {%- assign q = chunk | split: '</h3>' | first | split: '>' | last | strip -%}
+    {%- assign a = chunk | split: '</h3>' | last | strip_html | normalize_whitespace | strip -%}
+    {
+      "@type": "Question",
+      "name": {{ q | jsonify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ a | jsonify }}
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ]
+}
+</script>
+{% endif %}
