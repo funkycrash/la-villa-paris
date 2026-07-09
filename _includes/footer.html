@@ -10,12 +10,15 @@
 				<h3>La Villa Paris - Tel/Phone : +33673623845</h3>
 				<ul class="links">
 					<li>
-						<!-- Sélecteur de langue : chaque drapeau pointe vers la même page dans l'autre langue -->
-						<a href="/{{ pk }}" hreflang="fr" id="french"><img src="/images/fr.png" alt="français" /></a>
-						<a href="/en/{{ pk }}" hreflang="en" id="english"><img src="/images/us.png" alt="english" /></a>
-						<a href="/de/{{ pk }}" hreflang="de" id="german"><img src="/images/de.jpg" alt="deutsch" /></a>
-						<a href="/es/{{ pk }}" hreflang="es" id="espanol"><img src="/images/es.jpg" alt="español" /></a>
-						<a href="/zh/{{ pk }}" hreflang="zh" id="chinese"><img src="/images/cn.jpg" alt="中文" /></a>
+						<!-- Sélecteur de langue : chaque drapeau pointe vers la même page dans l'autre langue.
+						     Le cookie nf_lang est lu par Netlify pour les conditions Language de netlify.toml :
+						     sans lui, un navigateur anglophone qui clique le drapeau français serait re-redirigé
+						     / -> /en/ (force = true). Il mémorise aussi le choix pour les visites suivantes. -->
+						<a href="/{{ pk }}" hreflang="fr" id="french" onclick="document.cookie='nf_lang=fr;path=/;max-age=31536000'"><img src="/images/fr.png" alt="français" /></a>
+						<a href="/en/{{ pk }}" hreflang="en" id="english" onclick="document.cookie='nf_lang=en;path=/;max-age=31536000'"><img src="/images/us.png" alt="english" /></a>
+						<a href="/de/{{ pk }}" hreflang="de" id="german" onclick="document.cookie='nf_lang=de;path=/;max-age=31536000'"><img src="/images/de.jpg" alt="deutsch" /></a>
+						<a href="/es/{{ pk }}" hreflang="es" id="espanol" onclick="document.cookie='nf_lang=es;path=/;max-age=31536000'"><img src="/images/es.jpg" alt="español" /></a>
+						<a href="/zh/{{ pk }}" hreflang="zh" id="chinese" onclick="document.cookie='nf_lang=zh;path=/;max-age=31536000'"><img src="/images/cn.jpg" alt="中文" /></a>
 					</li>
 					<li><a href="{{ prefix }}/chambres">{{ i18n.chambres }}</a></li>
 					<li><a href="{{ prefix }}/photos">{{ i18n.Photos | default: 'Photos' }}</a></li>

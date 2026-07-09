@@ -110,6 +110,17 @@ function check(cond, label, extra) {
   }
   await page.screenshot({ path: SCRATCH + "/shot-home-desktop.png" });
 
+  // Choix de langue explicite : le clic sur un drapeau pose le cookie nf_lang, que Netlify
+  // consulte pour ses conditions Language (sinon un navigateur anglophone qui choisit le
+  // français serait re-redirigé / -> /en/ par netlify.toml, force = true)
+  // (pas de waitForNavigation/waitForFunction : l'activation du prérendu des speculation rules
+  // remplace la cible en cours de route et les fait résoudre trop tôt ou planter)
+  await page.click("#footer a#english");
+  await new Promise((r) => setTimeout(r, 1500));
+  check(await page.evaluate(() => location.pathname) === "/en/", "drapeau: clic drapeau anglais depuis la home -> /en/", page.url());
+  check(await page.evaluate(() => document.cookie.includes("nf_lang=en")),
+    "drapeau: cookie nf_lang posé au clic (contre la re-redirection Netlify)", await page.evaluate(() => document.cookie));
+
   // ---- Accueil anglais servi par le serveur : /en/ (le texte est dans le HTML brut) ----
   const rawEn = await page.evaluate(async (u) => await (await fetch(u)).text(), BASE + "/en/");
   check(rawEn.includes('lang="en"'), "en: <html lang='en'> dans le HTML brut");

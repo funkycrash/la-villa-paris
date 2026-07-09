@@ -101,6 +101,13 @@ Pièges rencontrés (ne pas retomber dedans) :
 ## Décisions prises (avec Nicolas)
 
 - Pas de JS sauf si nécessaire pour la galerie (finalement : zéro JS, scroll-snap suffit).
+- Exception JS assumée (2026-07-09) : un `onclick` inline par drapeau du footer pose le
+  cookie `nf_lang`, que Netlify consulte pour ses conditions `Language`. Sans lui, un
+  navigateur anglophone qui clique le drapeau français est re-redirigé / -> /en/
+  (force = true) et ne peut jamais atteindre l'accueil français. Le cookie mémorise
+  aussi le choix pour les visites suivantes. Test sur le deploy preview :
+  `curl -sI -H "Accept-Language: en" -H "Cookie: nf_lang=fr" $BASE/` doit donner 200
+  (sans le cookie : 302 -> /en/).
 - Chinois : URLs et code langue `zh` (standard), l'ancien code interne était `cn`.
 - `merci` et `legal` restent en français uniquement.
 - Jekyll + Netlify + édition GitHub conservés, identité visuelle inchangée.
