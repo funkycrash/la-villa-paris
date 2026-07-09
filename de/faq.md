@@ -1,7 +1,7 @@
 ---
 layout: faq
 title: 'La Villa Paris'
-lang: fr
+lang: de
 pagekey: 'faq'
-permalink: /faq
+permalink: /de/faq
 ---

@@ -1,7 +1,7 @@
 ---
 layout: chambres
 title: 'La Villa Paris'
-lang: fr
+lang: es
 pagekey: 'chambres'
-permalink: /chambres
+permalink: /es/chambres
 ---

@@ -1,7 +1,7 @@
 ---
 layout: photos
 title: 'La Villa Paris'
-lang: fr
+lang: de
 pagekey: 'photos'
-permalink: /photos
+permalink: /de/photos
 ---

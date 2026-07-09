@@ -1,50 +1,58 @@
+{% assign lang = page.lang | default: 'fr' %}
+{% assign i18n = site.data.i18n[lang] %}
+{% assign prefix = '' %}{% if lang != 'fr' %}{% assign prefix = '/' | append: lang %}{% endif %}
 <head>
-	<title>{% case page.layout %}{% when 'chambres' %}Chambres / Rooms - La Villa Paris{% when 'photos' %}Photos - La Villa Paris{% when 'faq' %}FAQ - La Villa Paris{% when 'reservation' %}Réservation / Booking - La Villa Paris{% when 'legal' %}Mentions légales - La Villa Paris{% when 'merci' %}Merci - La Villa Paris{% else %}La Villa Paris - Bed and Breakfast in Paris - Official Website{% endcase %}</title>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description"
-		content="Chambres d'hôtes à Paris , La Villa Paris , 5 chambres d'hôtes de luxe vous permettent de passer vos vacances dans un hôtel romantique, ou vous pouvez découvrir la vie parisienne." />
-	<meta name="keywords" content="La Villa Paris, chambres d'hôtes de luxe à Paris" />
-	<meta name="owner" content="owner">
+	<title>{% case page.layout %}{% when 'chambres' %}{{ i18n.chambres }} - La Villa Paris{% when 'photos' %}Photos - La Villa Paris{% when 'faq' %}FAQ - La Villa Paris{% when 'reservation' %}{{ i18n.reservation }} - La Villa Paris{% when 'legal' %}Mentions légales - La Villa Paris{% when 'merci' %}{{ i18n.thankyou }} - La Villa Paris{% else %}{{ i18n.header | strip }}{% endcase %}</title>
+	<meta name="description" content="{{ i18n.description | strip }}" />
 	<meta name="author" content="La Villa Paris">
 
 	<!-- Favicon -->
 	<link rel="icon" href="/favicon.ico" sizes="32x32">
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-	
-	<!-- Canonical URL to prevent duplicate content issues -->
-	{% assign canonical_url = page.url | replace: '/index.html', '/' | replace: '/index_en.html', '/' | replace: '/index_de.html', '/' | replace: '/index_fr.html', '/' %}
-	{% if canonical_url == '' %}{% assign canonical_url = '/' %}{% endif %}
-	<link rel="canonical" href="https://la-villa-paris.com{{ canonical_url }}" />
-	
-	<!-- Hreflang tags for international SEO -->
-	<link rel="alternate" hreflang="fr" href="https://la-villa-paris.com{{ canonical_url }}" />
-	<link rel="alternate" hreflang="en" href="https://la-villa-paris.com{{ canonical_url }}" />
-	<link rel="alternate" hreflang="x-default" href="https://la-villa-paris.com{{ canonical_url }}" />
-	
-	<!-- Open Graph tags for better social sharing -->
-	<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}La Villa Paris - Bed and Breakfast in Paris{% endif %}" />
-	<meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Chambres d'hôtes à Paris, La Villa Paris, 5 chambres d'hôtes de luxe vous permettent de passer vos vacances dans un hôtel romantique{% endif %}" />
-	<meta property="og:url" content="https://la-villa-paris.com{{ canonical_url }}" />
+
+	<!-- URL canonique et versions linguistiques (chaque langue est une vraie page indexable) -->
+	<link rel="canonical" href="https://la-villa-paris.com{{ page.url }}" />
+	{% if page.pagekey %}
+	<link rel="alternate" hreflang="fr" href="https://la-villa-paris.com/{{ page.pagekey }}" />
+	<link rel="alternate" hreflang="en" href="https://la-villa-paris.com/en/{{ page.pagekey }}" />
+	<link rel="alternate" hreflang="de" href="https://la-villa-paris.com/de/{{ page.pagekey }}" />
+	<link rel="alternate" hreflang="es" href="https://la-villa-paris.com/es/{{ page.pagekey }}" />
+	<link rel="alternate" hreflang="zh" href="https://la-villa-paris.com/zh/{{ page.pagekey }}" />
+	<link rel="alternate" hreflang="x-default" href="https://la-villa-paris.com/{{ page.pagekey }}" />
+	{% else %}
+	<link rel="alternate" hreflang="fr" href="https://la-villa-paris.com/" />
+	<link rel="alternate" hreflang="en" href="https://la-villa-paris.com/en/" />
+	<link rel="alternate" hreflang="de" href="https://la-villa-paris.com/de/" />
+	<link rel="alternate" hreflang="es" href="https://la-villa-paris.com/es/" />
+	<link rel="alternate" hreflang="zh" href="https://la-villa-paris.com/zh/" />
+	<link rel="alternate" hreflang="x-default" href="https://la-villa-paris.com/" />
+	{% endif %}
+
+	<!-- Partage sur les réseaux sociaux -->
+	<meta property="og:title" content="{{ i18n.header | strip }}" />
+	<meta property="og:description" content="{{ i18n.description | strip }}" />
+	<meta property="og:url" content="https://la-villa-paris.com{{ page.url }}" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="La Villa Paris" />
-	
+	<meta property="og:image" content="https://la-villa-paris.com/images/banner-homepage.jpg" />
+
 	<!-- Champs anti-spam (honeypot) du formulaire de contact -->
 	<style type="text/css">
 		#username { display: none; }
 		.gender { display: none; }
 	</style>
 
-	<!-- CSS (fonts.css : police auto-hébergée ; les icônes sont des SVG inline dans style.css) -->
+	<!-- CSS : skel.css = reset ; layout.css = grille/menu mobile ; style-*.css = ajustements par palier -->
 	<link href="/css/skel.css" rel="stylesheet" />
 	<link href="/css/fonts.css" rel="stylesheet" />
+	<link href="/css/layout.css" rel="stylesheet" />
 	<link href="/css/style.css" rel="stylesheet" />
-	<link href="/css/style-wide.css" rel="stylesheet" />
-	{% if page.layout == 'photos' %}
-	<link href="/css/slick.css" rel="stylesheet" />
-	<link href="/css/slick-theme.css" rel="stylesheet" />
-	{% endif %}
+	<link href="/css/style-wide.css" rel="stylesheet" media="(max-width: 1680px)" />
+	<link href="/css/style-normal.css" rel="stylesheet" media="(max-width: 1280px)" />
+	<link href="/css/style-narrow.css" rel="stylesheet" media="(max-width: 980px)" />
 
 	<!-- Police auto-hébergée (voir css/fonts.css) : préchargement du fichier principal -->
 	<link rel="preload" as="font" type="font/woff2" href="/fonts/source-sans-pro-400-latin.woff2" crossorigin>
@@ -76,17 +84,6 @@
 	}
 	</script>
 	{% endif %}
-
-	<!-- JavaScript : skel/init doivent s'exécuter avant le rendu (ils injectent le CSS responsive),
-	     ne pas les passer en defer/async. slick.js n'est chargé que sur la page photos (scripts.html). -->
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/jquery.dropotron.min.js"></script>
-	<script src="/js/skel.min.js"></script>
-	<script src="/js/skel-layers.min.js"></script>
-	<script src="/js/init.js"></script>
-	<script src="/js/jquery.localize.js"></script>
-	
-	<!--[if lte IE 8]><link rel="stylesheet" href="/css/ie/v8.css" /><![endif]-->
 
 	<!-- Pré-rendu des pages au survol des liens (Chrome/Edge ; ignoré ailleurs, dont Safari/iPhone) -->
 	<script type="speculationrules">

@@ -31,10 +31,40 @@
   to = "https://la-villa-paris.com/:splat"
   status = 301
 
+# Redirection de la page d'accueil selon la langue du navigateur (Accept-Language).
+# Les Français et les langues non couvertes restent sur la version française.
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+  force = true
+  conditions = {Language = ["en"]}
+
+[[redirects]]
+  from = "/"
+  to = "/de/"
+  status = 302
+  force = true
+  conditions = {Language = ["de"]}
+
+[[redirects]]
+  from = "/"
+  to = "/es/"
+  status = 302
+  force = true
+  conditions = {Language = ["es"]}
+
+[[redirects]]
+  from = "/"
+  to = "/zh/"
+  status = 302
+  force = true
+  conditions = {Language = ["zh"]}
+
 # Redirect old language URLs to main site
 [[redirects]]
   from = "/index_en.html"
-  to = "/"
+  to = "/en/"
   status = 301
 
 [[redirects]]

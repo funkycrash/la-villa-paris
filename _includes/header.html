@@ -1,22 +1,29 @@
+{% assign lang = page.lang | default: 'fr' %}
+{% assign i18n = site.data.i18n[lang] %}
+{% assign prefix = '' %}{% if lang != 'fr' %}{% assign prefix = '/' | append: lang %}{% endif %}
+{% assign slogan = i18n.header | split: ' - ' | last %}
 <div id="header">
 
     <!-- Logo -->
-    <h1><a data-localize="header" href="/" id="logo">La Villa Paris <em>La Villa Paris - Chambres d'hôtes à
-                Paris</em></a></h1>
+    <h1><a href="{{ prefix }}/" id="logo">La Villa Paris <em>{{ slogan }}</em></a></h1>
+
+    <!-- Menu mobile sans JavaScript : la case à cocher pilote l'affichage du nav (voir layout.css) -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-box" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle" aria-label="Menu"></label>
 
     <!-- Nav -->
     <nav id="nav">
         <ul>
-            <li class="index {% if page.layout == 'home' %}current{% endif %}"><a data-localize="accueil"
-                    href="/">Accueil</a></li>
-            <li class="chambres {% if page.layout == 'chambres' %}current{% endif %}"><a data-localize="chambres"
-                    href="/chambres">Chambres</a></li>
-            <li class="photos {% if page.layout == 'photos' %}current{% endif %}"><a data-localize="Photos"
-                    href="/photos">Photos</a></li>
-            <li class="faq {% if page.layout == 'faq' %}current{% endif %}"><a data-localize="faq"
-                    href="/faq">FAQ</a></li>
+            <li class="index {% if page.layout == 'home' %}current{% endif %}"><a
+                    href="{{ prefix }}/">{{ i18n.accueil }}</a></li>
+            <li class="chambres {% if page.layout == 'chambres' %}current{% endif %}"><a
+                    href="{{ prefix }}/chambres">{{ i18n.chambres }}</a></li>
+            <li class="photos {% if page.layout == 'photos' %}current{% endif %}"><a
+                    href="{{ prefix }}/photos">{{ i18n.Photos | default: 'Photos' }}</a></li>
+            <li class="faq {% if page.layout == 'faq' %}current{% endif %}"><a
+                    href="{{ prefix }}/faq">{{ i18n.faq }}</a></li>
             <li class="reservation {% if page.layout == 'reservation' %}current{% endif %}"><a
-                    data-localize="reservation" href="/reservation">Reservation</a></li>
+                    href="{{ prefix }}/reservation">{{ i18n.reservation }}</a></li>
         </ul>
     </nav>
 </div>

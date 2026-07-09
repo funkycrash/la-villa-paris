@@ -1,7 +1,7 @@
 ---
 layout: reservation
 title: 'La Villa Paris'
-lang: fr
+lang: en
 pagekey: 'reservation'
-permalink: /reservation
+permalink: /en/reservation
 ---

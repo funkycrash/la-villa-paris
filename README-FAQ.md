@@ -2,15 +2,15 @@
 
 La page [la-villa-paris.com/faq](https://la-villa-paris.com/faq) est alimentée par 5 fichiers, un par langue, dans le dossier [`_faq/`](_faq/) :
 
-| Fichier | Langue |
-|---|---|
-| `_faq/fr.md` | Français |
-| `_faq/en.md` | Anglais |
-| `_faq/de.md` | Allemand |
-| `_faq/es.md` | Espagnol |
-| `_faq/cn.md` | Chinois |
+| Fichier | Langue | Page |
+|---|---|---|
+| `_faq/fr.md` | Français | `/faq` |
+| `_faq/en.md` | Anglais | `/en/faq` |
+| `_faq/de.md` | Allemand | `/de/faq` |
+| `_faq/es.md` | Espagnol | `/es/faq` |
+| `_faq/zh.md` | Chinois | `/zh/faq` |
 
-Le visiteur voit la version correspondant à la langue de son navigateur, et peut changer avec les drapeaux en bas de page, comme sur le reste du site.
+Chaque langue a sa propre page (bon pour Google), accessible aussi par les drapeaux en bas de page.
 
 ## Ajouter ou modifier une question
 

@@ -1,6 +1,8 @@
 ---
 layout: default
 ---
+{% assign lang = page.lang | default: 'fr' %}
+{% assign i18n = site.data.i18n[lang] %}
 <!-- Main -->
 <section class="wrapper style1">
     <div class="container">
@@ -9,8 +11,8 @@ layout: default
                 <div id="content">
                     <article id="merci">
                         <header>
-                            <h2 data-localize="thankyou">Merci</h2>
-                            <p data-localize="thankyoumsg">Votre message à été reçu</p>
+                            <h2>{{ i18n.thankyou }}</h2>
+                            <p>{{ i18n.thankyoumsg }}</p>
                         </header>
                     </article>
                 </div>

@@ -1,7 +1,7 @@
 ---
 layout: home
 title: 'La Villa Paris'
-lang: fr
+lang: es
 pagekey: ''
-permalink: /
+permalink: /es/
 ---
