@@ -39,7 +39,8 @@
 				titleBar: {
 					breakpoints: 'narrower',
 					height: 44,
-					html: '<span class="toggle" data-action="toggleLayer" data-args="navPanel"></span><span class="title" data-action="copyHTML" data-args="logo"></span>',
+					// Pas de copie du logo ici : le titre du site est déjà affiché juste sous la barre
+					html: '<span class="toggle" data-action="toggleLayer" data-args="navPanel"></span>',
 					position: 'top-left',
 					side: 'top',
 					width: '100%'
