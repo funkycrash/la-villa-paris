@@ -8,7 +8,7 @@ Hier finden Sie die Antworten auf die häufigsten Fragen. Ihre Frage ist nicht d
 
 ### Sind die Zimmer klimatisiert?
 
-Ja. Alle unsere Zimmer verfügen über Klimaanlage und Heizung, mit individueller Temperaturregelung in jedem Zimmer.
+Ja. Alle unsere Zimmer verfügen über Klimaanlage, mit individueller Temperaturregelung in jedem Zimmer. Im Winter kann die Klimaanlage als zusätzliche Heizung ebenfalls individuell geregelt werden
 
 ### Gibt es WLAN?
 
