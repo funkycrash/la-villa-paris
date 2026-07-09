@@ -34,7 +34,7 @@
 
     function changeLang(lang) {
         try {
-            $("[data-localize]").localize("translation/localize", { 
+            $("[data-localize]").localize("translation/localize", {
                 language: lang,
                 timeout: 3000
             });
@@ -43,6 +43,25 @@
         }
     }
 </script>
+
+{% if page.layout == 'faq' %}
+<script type="text/javascript">
+    // La page FAQ contient un bloc par langue : on affiche celui de la langue courante
+    (function () {
+        var faqLangs = ['fr', 'en', 'de', 'es', 'cn'];
+        function showFaqLang(lang) {
+            if (faqLangs.indexOf(lang) === -1) lang = 'fr';
+            $('.faq-lang').hide().filter('[data-lang="' + lang + '"]').show();
+        }
+        var baseChangeLang = changeLang;
+        changeLang = function (lang) {
+            baseChangeLang(lang);
+            showFaqLang(lang);
+        };
+        showFaqLang((navigator.language || navigator.userLanguage || 'fr').substring(0, 2));
+    })();
+</script>
+{% endif %}
 
 {% if page.layout == 'photos' %}
 <script type="text/javascript">
