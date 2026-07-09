@@ -58,7 +58,10 @@
             baseChangeLang(lang);
             showFaqLang(lang);
         };
-        showFaqLang((navigator.language || navigator.userLanguage || 'fr').substring(0, 2));
+        // Pas de détection de la langue du navigateur ici : l'appel localize() initial
+        // ci-dessus n'applique jamais ses traductions (son callback ne rappelle pas la
+        // fonction d'application), donc le site charge toujours en français. La FAQ
+        // démarre donc en français aussi, et suit ensuite les drapeaux via changeLang.
     })();
 </script>
 {% endif %}
