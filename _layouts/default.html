@@ -3,10 +3,7 @@
 
     {% include head.html %}
 
-    <body class="js-loading">
-        <!-- Loading indicator -->
-        <div class="loading-indicator"></div>
-
+    <body>
         {% include header.html %}
 
         {{content}}
@@ -14,32 +11,5 @@
         {% include footer.html %}
 
         {% include scripts.html %}
-        
-        <!-- Show content when everything is loaded -->
-        <script>
-            function hideLoadingIndicator() {
-                document.body.classList.remove('js-loading');
-                document.body.classList.add('js-loaded');
-                // Hide the loading indicator element
-                var loadingIndicator = document.querySelector('.loading-indicator');
-                if (loadingIndicator) {
-                    loadingIndicator.style.display = 'none';
-                }
-            }
-            
-            // Try to hide loading indicator when DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', hideLoadingIndicator);
-            } else {
-                // DOM is already loaded
-                hideLoadingIndicator();
-            }
-            
-            // Fallback: hide loading indicator after 2 seconds
-            setTimeout(hideLoadingIndicator, 2000);
-            
-            // Additional fallback: hide when window loads
-            window.addEventListener('load', hideLoadingIndicator);
-        </script>
     </body>
 </html>

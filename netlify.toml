@@ -70,13 +70,25 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
 
 # Cache static assets
+# CSS/JS : 1 jour seulement, car les fichiers ne sont pas fingerprintés
+# (avec 1 an, les visiteurs réguliers gardaient d'anciennes versions après une modif)
 [[headers]]
   for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "*.woff"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
 
 [[headers]]
-  for = "*.js"
+  for = "*.woff2"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
 
