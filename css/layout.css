@@ -65,9 +65,17 @@ body{padding-top:44px}
 #nav>ul>li.current:before{display:none}
 }
 
-/* ---- Galeries photos : défilement natif avec accroche (remplace le carrousel slick) ---- */
-.slideshow{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:0.75em}
-.slideshow img{width:calc((100% - 20px)/3);flex:0 0 auto;scroll-snap-align:start;border-radius:5px;height:auto;
+/* ---- Galeries photos : défilement natif avec accroche (remplace le carrousel slick).
+   Affordance sans flèches ni JS : une 4e photo à moitié visible + barre de défilement
+   toujours affichée (sur Mac la barre système est invisible tant qu'on ne scrolle pas). ---- */
+.slideshow{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:0.75em}
+/* scrollbar-width/color désactiveraient ::-webkit-scrollbar dans Chrome : réservés à Firefox */
+@supports not selector(::-webkit-scrollbar){.slideshow{scrollbar-width:thin;scrollbar-color:#c9c9c9 #efefef}}
+.slideshow::-webkit-scrollbar{height:8px}
+.slideshow::-webkit-scrollbar-track{background:#efefef;border-radius:4px}
+.slideshow::-webkit-scrollbar-thumb{background:#c9c9c9;border-radius:4px}
+.slideshow::-webkit-scrollbar-thumb:hover{background:#aaa}
+.slideshow img{width:calc((100% - 30px)/3.5);flex:0 0 auto;scroll-snap-align:start;border-radius:5px;height:auto;
   /* skeleton : fond animé visible pendant le chargement (recouvert dès que l'image est peinte) */
   background:linear-gradient(100deg,#ececec 40%,#f7f7f7 50%,#ececec 60%) 0 0/300% 100%;
   animation:shimmer 1.4s linear infinite}

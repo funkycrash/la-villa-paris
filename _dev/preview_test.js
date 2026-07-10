@@ -180,8 +180,18 @@ function check(cond, label, extra) {
       snapType: s && s.scrollSnapType,
       imgAlign: first && getComputedStyle(first.querySelector("img")).scrollSnapAlign,
       overflows: first && first.scrollWidth > first.clientWidth + 10,
+      // affordance : la 4e photo doit être partiellement visible (coupée au bord droit).
+      // NB : la scrollbar custom toujours visible ne peut pas être testée ici, puppeteer
+      // lance headless avec --hide-scrollbars (vérifiée manuellement, offsetH-clientH = 8).
+      peek: (() => {
+        const r = first.getBoundingClientRect(), i4 = first.querySelectorAll("img")[3];
+        if (!i4) return false;
+        const b = i4.getBoundingClientRect();
+        return b.left < r.right && b.right > r.right;
+      })(),
     };
   });
+  check(gal.peek, "photos: 4e photo partiellement visible (signale le défilement)", gal.peek);
   check(gal.images >= 95, "photos: ~101 images dans les galeries (" + gal.images + ")", gal.images);
   check(gal.lazy && gal.alts, "photos: images lazy + alt renseignés", { lazy: gal.lazy, alts: gal.alts });
   check(gal.dims && gal.async, "photos: width/height + decoding=async (espace réservé, pas de saut)", { dims: gal.dims, async: gal.async });
