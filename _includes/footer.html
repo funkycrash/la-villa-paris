@@ -1,3 +1,7 @@
+{% assign lang = page.lang | default: 'fr' %}
+{% assign i18n = site.data.i18n[lang] %}
+{% assign prefix = '' %}{% if lang != 'fr' %}{% assign prefix = '/' | append: lang %}{% endif %}
+{% assign pk = page.pagekey | default: '' %}
 <!-- Footer -->
 <div id="footer">
 	<div class="container">
@@ -6,34 +10,33 @@
 				<h3>La Villa Paris - Tel/Phone : +33673623845</h3>
 				<ul class="links">
 					<li>
-						<a href="javascript:changeLang('fr');" id="french"><img src="/images/fr.png"
-								alt="français" /></a>
-						<a href="javascript:changeLang('en');" id="english"><img src="/images/us.png"
-								alt="english" /></a>
-						<a href="javascript:changeLang('de');" id="german"><img src="/images/de.jpg"
-								alt="deutsch" /></a>
-						<a href="javascript:changeLang('es');" id="espanol"><img src="/images/es.jpg"
-								alt="espanol" /></a>
-						<a href="javascript:changeLang('cn');" id="chinese"><img src="/images/cn.jpg"
-								alt="chinese" /></a>
+						<!-- Sélecteur de langue : chaque drapeau pointe vers la même page dans l'autre langue.
+						     Le cookie nf_lang est lu par Netlify pour les conditions Language de netlify.toml :
+						     sans lui, un navigateur anglophone qui clique le drapeau français serait re-redirigé
+						     / -> /en/ (force = true). Il mémorise aussi le choix pour les visites suivantes. -->
+						<a href="/{{ pk }}" hreflang="fr" id="french" onclick="document.cookie='nf_lang=fr;path=/;max-age=31536000'"><img src="/images/fr.png" alt="français" /></a>
+						<a href="/en/{{ pk }}" hreflang="en" id="english" onclick="document.cookie='nf_lang=en;path=/;max-age=31536000'"><img src="/images/us.png" alt="english" /></a>
+						<a href="/de/{{ pk }}" hreflang="de" id="german" onclick="document.cookie='nf_lang=de;path=/;max-age=31536000'"><img src="/images/de.jpg" alt="deutsch" /></a>
+						<a href="/es/{{ pk }}" hreflang="es" id="espanol" onclick="document.cookie='nf_lang=es;path=/;max-age=31536000'"><img src="/images/es.jpg" alt="español" /></a>
+						<a href="/zh/{{ pk }}" hreflang="zh" id="chinese" onclick="document.cookie='nf_lang=zh;path=/;max-age=31536000'"><img src="/images/cn.jpg" alt="中文" /></a>
 					</li>
-					<li><a href="/chambres" data-localize="chambres">Chambres</a></li>
-					<li><a href="/photos">Photos</a></li>
-					{% if page.layout != 'reservation' %}<li><a href="/reservation"
-							data-localize="reservation">Réservation</a></li>{% endif %}
+					<li><a href="{{ prefix }}/chambres">{{ i18n.chambres }}</a></li>
+					<li><a href="{{ prefix }}/photos">{{ i18n.Photos | default: 'Photos' }}</a></li>
+					{% if page.layout != 'reservation' %}<li><a
+							href="{{ prefix }}/reservation">{{ i18n.reservation }}</a></li>{% endif %}
 				</ul>
 			</section>
 			<section class="3u 6u$(narrower) 12u$(mobilep)">
 				<h3>Pratique</h3>
 				<ul class="links">
 					<li><a href="//www.google.com/maps/place/La+Villa+Paris,+33+Rue+de+la+Fontaine+%C3%80+Mulard,+75013+Paris/@48.8581169,2.3438755,13z/data=!4m2!3m1!1s0x47e6719bdc0fd3cb:0xcf496f9acec824bd"
-							data-localize="planparis" target="_blank">Plan de Paris</a></li>
-					{% if page.layout != 'reservation' %}<li><a href="/reservation">Availability request (english)</a>
+							target="_blank">{{ i18n.planparis }}</a></li>
+					{% if page.layout != 'reservation' %}<li><a href="{{ prefix }}/reservation">Availability request (english)</a>
 					</li>{% endif %}
-					{% if page.layout != 'reservation' %}<li><a href="/reservation">Demande de réservation
+					{% if page.layout != 'reservation' %}<li><a href="{{ prefix }}/reservation">Demande de réservation
 							(français)</a></li>{% endif %}
 					<li><a href="/legal">Legal</a></li>
-					{% if page.layout != 'reservation' %}<li><a href="/reservation"><img width="200"
+					{% if page.layout != 'reservation' %}<li><a href="{{ prefix }}/reservation"><img width="200"
 								loading="lazy" src="/images/booking.jpg"
 								alt="La Villa Paris - Bed and Breakfast in Paris - Better than a Hotel" /></a></li>
 					<li>
@@ -49,8 +52,7 @@
 				<form method="post" netlify-honeypot="gender" netlify id="contact" action="/merci">
 					<div class="row 50%">
 						<div class="6u 12u(mobilep)">
-							<input type="text" name="name" id="name" placeholder="Nom" data-localize="form.nom"
-								required />
+							<input type="text" name="name" id="name" placeholder="{{ i18n.form.nom }}" required />
 						</div>
 						<div class="6u 12u(mobilep)">
 							<input type="email" name="email" id="email" placeholder="Email" required />
@@ -71,8 +73,7 @@
 					<div class="row 50%">
 						<div class="12u">
 							<ul class="actions">
-								<li><input type="submit" class="button alt" value="Envoyer le Message"
-										data-localize="form.envoyer" /></li>
+								<li><input type="submit" class="button alt" value="{{ i18n.form.envoyer }}" /></li>
 							</ul>
 						</div>
 					</div>
@@ -90,7 +91,6 @@
 	<div class="copyright">
 		<ul class="menu">
 			<li>&copy; 2026 La Villa Paris. All rights reserved</li>
-			</li>
 		</ul>
 	</div>
 

@@ -1,0 +1,91 @@
+/* ============================================================================
+   layout.css : grille responsive, conteneur, menu mobile et galeries.
+   Remplace le framework JS "skel" (2014) qui générait tout ceci à l'exécution.
+   Breakpoints hérités du site : 1680 (wide), 1280 (normal), 980 (narrow),
+   840 (narrower, apparition du menu mobile), 736 (mobile), 480 (mobilep).
+   Les noms de classes historiques (4u, 12u(narrower), row 200%...) sont
+   conservés tels quels et implémentés via des sélecteurs d'attribut.
+   ============================================================================ */
+
+/* ---- Conteneur ---- */
+.container{width:1400px;max-width:100%;margin-left:auto;margin-right:auto}
+@media (max-width:1680px){.container{width:1200px}}
+@media (max-width:1280px){.container{width:960px}}
+@media (max-width:980px){.container{width:95%}}
+@media (max-width:736px){.container{width:90%}}
+@media (max-width:480px){.container{width:100%;box-sizing:border-box;padding-left:20px;padding-right:20px}}
+
+/* ---- Grille 12 colonnes (gouttière portée par padding-left, marge négative sur la ligne) ---- */
+.row{--g:50px;display:flex;flex-wrap:wrap;margin-left:calc(var(--g)*-1);row-gap:calc(var(--g)/2)}
+.row>*{box-sizing:border-box;padding-left:var(--g);min-width:0}
+[class~="row"][class~="50%"]{--g:25px}
+[class~="row"][class~="200%"]{--g:100px}
+[class~="3u"]{width:25%}
+[class~="4u"]{width:33.3333%}
+[class~="6u"]{width:50%}
+[class~="8u"]{width:66.6667%}
+[class~="12u"]{width:100%}
+@media (max-width:1680px){
+.row{--g:40px}
+[class~="row"][class~="50%"]{--g:20px}
+[class~="row"][class~="200%"]{--g:80px}
+}
+@media (max-width:1280px){
+.row{--g:30px}
+[class~="row"][class~="50%"]{--g:15px}
+[class~="row"][class~="200%"]{--g:60px}
+}
+@media (max-width:840px){
+[class~="6u(narrower)"],[class~="6u$(narrower)"]{width:50%}
+[class~="12u(narrower)"]{width:100%}
+[class~="important(narrower)"]{order:-1}
+}
+@media (max-width:736px){
+.row{--g:20px}
+[class~="row"][class~="50%"]{--g:10px}
+[class~="row"][class~="200%"]{--g:40px}
+}
+@media (max-width:480px){
+[class~="12u(mobilep)"],[class~="12u$(mobilep)"]{width:100%}
+}
+
+/* ---- Menu mobile (case à cocher, zéro JavaScript) ---- */
+.nav-toggle-box,.nav-toggle{display:none}
+@media (max-width:840px){
+body{padding-top:44px}
+#header::before{content:'';position:fixed;top:0;left:0;right:0;height:44px;background-color:#666;background-image:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.3)),url("/css/images/bg01.png");box-shadow:0 2px 5px rgba(0,0,0,0.35);z-index:1000}
+.nav-toggle{display:block;position:fixed;top:0;left:0;width:56px;height:44px;z-index:1002;cursor:pointer}
+.nav-toggle::before{content:'';position:absolute;left:16px;top:12px;width:22px;height:20px;background-color:#fff;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201536%201792%22%3E%3Cpath%20transform=%22translate(0,1536)%20scale(1,-1)%22%20d=%22M1536%20192v-128q0%20-26%20-19%20-45t-45%20-19h-1408q-26%200%20-45%2019t-19%2045v128q0%2026%2019%2045t45%2019h1408q26%200%2045%20-19t19%20-45zM1536%20704v-128q0%20-26%20-19%20-45t-45%20-19h-1408q-26%200%20-45%2019t-19%2045v128q0%2026%2019%2045t45%2019h1408q26%200%2045%20-19t19%20-45zM1536%201216v-128q0%20-26%20-19%20-45%20t-45%20-19h-1408q-26%200%20-45%2019t-19%2045v128q0%2026%2019%2045t45%2019h1408q26%200%2045%20-19t19%20-45z%22/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201536%201792%22%3E%3Cpath%20transform=%22translate(0,1536)%20scale(1,-1)%22%20d=%22M1536%20192v-128q0%20-26%20-19%20-45t-45%20-19h-1408q-26%200%20-45%2019t-19%2045v128q0%2026%2019%2045t45%2019h1408q26%200%2045%20-19t19%20-45zM1536%20704v-128q0%20-26%20-19%20-45t-45%20-19h-1408q-26%200%20-45%2019t-19%2045v128q0%2026%2019%2045t45%2019h1408q26%200%2045%20-19t19%20-45zM1536%201216v-128q0%20-26%20-19%20-45%20t-45%20-19h-1408q-26%200%20-45%2019t-19%2045v128q0%2026%2019%2045t45%2019h1408q26%200%2045%20-19t19%20-45z%22/%3E%3C/svg%3E") center/contain no-repeat}
+#nav{display:none;position:fixed;top:44px;left:0;right:0;z-index:1001;background:#555;max-height:calc(100vh - 44px);overflow-y:auto;text-align:left}
+.nav-toggle-box:checked~#nav{display:block}
+#nav:after{display:none}
+#nav>ul>li{display:block;margin:0;border-top:solid 1px rgba(255,255,255,0.1)}
+#nav>ul>li:first-child{border-top:0}
+#nav>ul>li a{padding:0.75em 1.25em;font-size:0.9em}
+#nav>ul>li.current:before{display:none}
+}
+
+/* ---- Galeries photos : défilement natif avec accroche (remplace le carrousel slick).
+   Affordance sans flèches ni JS : une 4e photo à moitié visible + barre de défilement
+   toujours affichée (sur Mac la barre système est invisible tant qu'on ne scrolle pas). ---- */
+.slideshow{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:0.75em}
+/* scrollbar-width/color désactiveraient ::-webkit-scrollbar dans Chrome : réservés à Firefox */
+@supports not selector(::-webkit-scrollbar){.slideshow{scrollbar-width:thin;scrollbar-color:#c9c9c9 #efefef}}
+.slideshow::-webkit-scrollbar{height:8px}
+.slideshow::-webkit-scrollbar-track{background:#efefef;border-radius:4px}
+.slideshow::-webkit-scrollbar-thumb{background:#c9c9c9;border-radius:4px}
+.slideshow::-webkit-scrollbar-thumb:hover{background:#aaa}
+.slideshow img{width:calc((100% - 30px)/3.5);flex:0 0 auto;scroll-snap-align:start;border-radius:5px;height:auto;
+  /* skeleton : fond animé visible pendant le chargement (recouvert dès que l'image est peinte) */
+  background:linear-gradient(100deg,#ececec 40%,#f7f7f7 50%,#ececec 60%) 0 0/300% 100%;
+  animation:shimmer 1.4s linear infinite}
+@keyframes shimmer{to{background-position:-300% 0}}
+@media (prefers-reduced-motion:reduce){.slideshow img{animation:none}}
+@media (max-width:840px){.slideshow img{width:75%}}
+
+/* ---- Iframe de réservation beds24 : hauteurs par palier (remplace le script jQuery de resize) ---- */
+#bed24{width:100%;border:none;height:2400px}
+@media (max-width:785px){#bed24{height:5400px}}
+@media (max-width:700px){#bed24{height:4900px}}
+@media (max-width:550px){#bed24{height:4400px}}
+@media (max-width:400px){#bed24{height:3900px}}

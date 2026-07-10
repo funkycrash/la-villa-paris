@@ -2,3 +2,6 @@ _site/
 .DS_Store
 .jekyll-cache/
 .sass-cache/
+_dev/preview/
+_dev/*.png
+_dev/node_modules/

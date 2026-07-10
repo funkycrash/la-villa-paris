@@ -1,46 +1,25 @@
 ---
 layout: default
 ---
+{% assign lang = page.lang | default: 'fr' %}
+{% assign i18n = site.data.i18n[lang] %}
 <section class="wrapper style1">
     <div class="container">
         <div id="content">
 
             <!-- Content -->
             <header>
-                <h2 data-localize="reservation">Reservation</h2>
-                <p data-localize="reservationdesc">Book your stay at La Villa Paris / Reservez votre séjour à La Villa
-                    Paris</p>
+                <h2>{{ i18n.reservation }}</h2>
+                <p>{{ i18n.reservationdesc }}</p>
             </header>
 
-            <iframe id="bed24"
+            <!-- La hauteur par palier d'écran est gérée en CSS (voir #bed24 dans layout.css) -->
+            <iframe id="bed24" title="Reservation La Villa Paris"
                 src="//www.beds24.com/booking2.php?propid=14504&numdisplayed=5&numnight=1&numadult=2-1&referer=iframe"
-                width="100%" height="2000" style="max-width:100%;border:none;overflow:auto;">
+                width="100%" height="2400">
                 <p><a href="//www.beds24.com/booking2.php?propid=14504&referer=iframe" title="Book Now">Book
                         Now</a></p>
             </iframe>
-            <script>
-                var bed24_iframe = $('#bed24');
-                var height_iframe = 2000;
-                $(window).resize(function () {
-                    var width = $(window).width();
-                    if (width > 785) {
-                        height_iframe = 2400;
-                    }
-                    if (width <= 785 && width > 700) {
-                        height_iframe = 5400;
-                    }
-                    if (width <= 700 && width > 550) {
-                        height_iframe = 4900;
-                    }
-                    if (width <= 550 && width > 400) {
-                        height_iframe = 4400;
-                    }
-                    if (width <= 400) {
-                        height_iframe = 3900;
-                    }
-                    bed24_iframe.attr('height', height_iframe);
-                });
-            </script>
         </div>
     </div>
 </section>

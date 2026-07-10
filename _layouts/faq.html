@@ -1,37 +1,34 @@
 ---
 layout: default
 ---
+{% assign lang = page.lang | default: 'fr' %}
+{% assign i18n = site.data.i18n[lang] %}
+{% assign prefix = '' %}{% if lang != 'fr' %}{% assign prefix = '/' | append: lang %}{% endif %}
+{% assign doc = site.faq | where: "lang", lang | first %}
 <!-- Main -->
 <section class="wrapper style1">
     <div class="container">
         <div id="content">
 
-            <!-- Content : un bloc par langue, geré par le sélecteur de langue du site (voir scripts.html) -->
-            {% assign faqlangs = "fr,en,de,es,cn" | split: "," %}
-            {% for l in faqlangs %}
-            {% assign doc = site.faq | where: "lang", l | first %}
-            {% if doc %}
-            <article class="faq-lang" data-lang="{{ l }}"{% unless l == "fr" %} style="display:none"{% endunless %}>
+            <!-- Contenu : _faq/<langue>.md, un fichier par langue, éditable sur GitHub -->
+            <article class="faq">
                 {{ doc.content }}
             </article>
-            {% endif %}
-            {% endfor %}
 
             <footer>
-                <a href="/reservation" class="button" data-localize="book">Je Réserve</a>
+                <a href="{{ prefix }}/reservation" class="button">{{ i18n.book }}</a>
             </footer>
         </div>
     </div>
 </section>
 
-{% assign frdoc = site.faq | where: "lang", "fr" | first %}
-{% if frdoc %}
+{% if doc %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {%- assign chunks = frdoc.content | split: '<h3' -%}
+    {%- assign chunks = doc.content | split: '<h3' -%}
     {%- for chunk in chunks offset: 1 -%}
     {%- assign q = chunk | split: '</h3>' | first | split: '>' | last | strip -%}
     {%- assign a = chunk | split: '</h3>' | last | strip_html | normalize_whitespace | strip -%}

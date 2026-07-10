@@ -1,0 +1,19 @@
+{% comment %}
+Galerie photo pilotée par le contenu du dossier : pour ajouter une photo il suffit
+d'uploader imageN.jpg dans images/photogallery/<dossier>/ (numérotées de 1 à 30),
+aucune modification HTML nécessaire. Défilement natif, voir .slideshow dans layout.css.
+Usage : {% include gallery.html folder="bastille" alt="Chambre Bastille" %}
+w/h (optionnels, défaut 800x606) donnent le RATIO des photos du dossier : le navigateur
+réserve l'espace avant chargement (pas de saut de page, le fond "shimmer" reste visible).
+{% endcomment %}
+<div class="slideshow">
+	{% for i in (1..30) %}
+	{% capture ipath %}/images/photogallery/{{ include.folder }}/image{{ i }}.jpg{% endcapture %}
+	{% assign f = site.static_files | where: "path", ipath | first %}
+	{% unless f %}{% comment %} .JPG : extension majuscule fréquente à l'upload {% endcomment %}
+	{% capture ipath %}/images/photogallery/{{ include.folder }}/image{{ i }}.JPG{% endcapture %}
+	{% assign f = site.static_files | where: "path", ipath | first %}
+	{% endunless %}
+	{% if f %}<img src="{{ ipath }}" loading="lazy" decoding="async" width="{{ include.w | default: 800 }}" height="{{ include.h | default: 606 }}" alt="{{ include.alt }} {{ i }}" />{% endif %}
+	{% endfor %}
+</div>
