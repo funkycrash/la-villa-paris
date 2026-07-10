@@ -67,7 +67,12 @@ body{padding-top:44px}
 
 /* ---- Galeries photos : défilement natif avec accroche (remplace le carrousel slick) ---- */
 .slideshow{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:0.75em}
-.slideshow img{width:calc((100% - 20px)/3);flex:0 0 auto;scroll-snap-align:start;border-radius:5px;height:auto}
+.slideshow img{width:calc((100% - 20px)/3);flex:0 0 auto;scroll-snap-align:start;border-radius:5px;height:auto;
+  /* skeleton : fond animé visible pendant le chargement (recouvert dès que l'image est peinte) */
+  background:linear-gradient(100deg,#ececec 40%,#f7f7f7 50%,#ececec 60%) 0 0/300% 100%;
+  animation:shimmer 1.4s linear infinite}
+@keyframes shimmer{to{background-position:-300% 0}}
+@media (prefers-reduced-motion:reduce){.slideshow img{animation:none}}
 @media (max-width:840px){.slideshow img{width:75%}}
 
 /* ---- Iframe de réservation beds24 : hauteurs par palier (remplace le script jQuery de resize) ---- */

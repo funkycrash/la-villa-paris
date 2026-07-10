@@ -172,6 +172,11 @@ function check(cond, label, extra) {
       images: imgs.length,
       lazy: imgs.every((i) => i.loading === "lazy"),
       alts: imgs.every((i) => i.alt.trim().length > 0),
+      // width/height + decoding : l'espace est réservé avant chargement (pas de saut de
+      // page, le fond shimmer de layout.css reste visible pendant le téléchargement)
+      dims: imgs.every((i) => parseInt(i.getAttribute("width")) > 0 && parseInt(i.getAttribute("height")) > 0),
+      async: imgs.every((i) => i.decoding === "async"),
+      shimmer: getComputedStyle(imgs[0]).animationName !== "none",
       snapType: s && s.scrollSnapType,
       imgAlign: first && getComputedStyle(first.querySelector("img")).scrollSnapAlign,
       overflows: first && first.scrollWidth > first.clientWidth + 10,
@@ -179,6 +184,8 @@ function check(cond, label, extra) {
   });
   check(gal.images >= 95, "photos: ~101 images dans les galeries (" + gal.images + ")", gal.images);
   check(gal.lazy && gal.alts, "photos: images lazy + alt renseignés", { lazy: gal.lazy, alts: gal.alts });
+  check(gal.dims && gal.async, "photos: width/height + decoding=async (espace réservé, pas de saut)", { dims: gal.dims, async: gal.async });
+  check(gal.shimmer, "photos: fond shimmer actif pendant le chargement", gal.shimmer);
   check(/x/.test(gal.snapType || "") && gal.imgAlign === "start" && gal.overflows,
     "photos: scroll-snap natif sur les galeries", gal);
   const snapped = await page.evaluate(async () => {

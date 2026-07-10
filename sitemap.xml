@@ -162,10 +162,4 @@
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
-  <url>
-    <loc>https://la-villa-paris.com/sitemap</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
 </urlset>

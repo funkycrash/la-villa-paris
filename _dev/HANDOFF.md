@@ -61,6 +61,23 @@ PAS ENTIÈREMENT VÉRIFIÉES (voir "Reste à faire").
 2. **Vérifs déjà faites** (spot-checks à l'assemblage + suite navigateur complète) :
    de/chambres contient "Zimmer" et les prix allemands, zh/faq contient 常见问题,
    photos.html contient 101 images (95 en galeries), hreflang présents.
+2bis. **Passe d'optimisation poids/perception (2026-07-09, non committée)** :
+   - Images : galeries redimensionnées à 800px JPEG q4 mêmes noms (9 Mo → 4,6 Mo, dont
+     l'aberration image1.jpg 908 Ko → ~50 Ko), booking.jpg 208 Ko → 20 Ko (400px),
+     banner recompressé 180 → 125 Ko. Originaux récupérables dans l'historique git.
+     Le WebP + <picture> reste pour M5.
+   - Skeleton galerie : width/height + decoding=async dans gallery.html (ratio par
+     dossier via params w/h, awards = 800x508) + fond shimmer CSS dans layout.css
+     (zéro JS, désactivé si prefers-reduced-motion).
+   - Code mort supprimé : css/fonts/slick.*, css/ajax-loader.gif, et dans style.css :
+     .dropotron, body.is-loading, #skel-layers-wrapper, .formerize-placeholder,
+     table.default, ul.actions.vertical, font-family FontAwesome de .icon:before.
+   - sitemap.html supprimé (lié nulle part, lien cassé vers /about/) + entrée retirée
+     de sitemap.xml (27 URLs désormais).
+   - `_redirects` supprimé : il était PRIORITAIRE sur netlify.toml et le contredisait
+     (/index_en.html → / vs /en/ ; catch-all 404 vers / vs /404.html). Les règles de
+     strip des paramètres ?utm_/?gclid étaient des no-ops (non forcées, les fichiers
+     existent). À REVÉRIFIER sur le deploy preview : les 302 de langue et le 404.
 3. **Deploy preview Netlify** (ouvrir une PR modernize → main) : vérifier les redirections
    Accept-Language (curl -H "Accept-Language: en" doit donner 302 → /en/), le build Jekyll
    réel (le banc local simule Liquid, il ne remplace pas un vrai build), et les 5 langues.
