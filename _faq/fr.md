@@ -8,7 +8,7 @@ Vous trouverez ici les réponses aux questions les plus souvent posées. Vous ne
 
 ### Les chambres sont-elles climatisées ?
 
-Oui. Toutes nos chambres sont équipées de la climatisation et du chauffage, avec un contrôle individuel de la température dans chaque chambre.
+Oui. Toutes nos chambres sont équipées de la climatisation avec un contrôle individuel de la température dans chaque chambre.
 
 ### Le wifi est-il disponible ?
 
