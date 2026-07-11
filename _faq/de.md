@@ -4,7 +4,7 @@ lang: de
 
 ## Häufig gestellte Fragen
 
-Hier finden Sie die Antworten auf die häufigsten Fragen. Ihre Frage ist nicht dabei? Schreiben Sie uns über das Kontaktformular unten auf der Seite oder per E-Mail an contact@la-villa-paris.com.
+Hier finden Sie die Antworten auf die häufigsten Fragen. Ihre Frage ist nicht dabei? Schreiben Sie uns über das Kontaktformular unten auf der Seite.
 
 ### Sind die Zimmer klimatisiert?
 
@@ -16,7 +16,7 @@ Ja, im ganzen Haus und auf der Terrasse steht kostenlos eine gute WLAN-Verbindun
 
 ### Haben die Zimmer ein eigenes Bad?
 
-Ja, jedes Zimmer hat sein eigenes Bad mit WC, direkt im Zimmer.
+Ja, jedes Zimmer hat sein eigenes Bad mit Dusche und WC, direkt im Zimmer.
 
 ### Wie sieht das Frühstück aus?
 
@@ -24,7 +24,12 @@ Jeden Morgen servieren wir ein reichhaltiges und abwechslungsreiches Frühstück
 
 ### Gibt es Parkplätze in der Nähe?
 
-Ein kostenpflichtiger Parkplatz befindet sich 5 Gehminuten vom Haus entfernt. Kontaktieren Sie uns gerne vor Ihrer Anreise für weitere Details.
+Die Villa Paris liegt in einer grünen und ruhigen Umgebung. Unsere Straße ist eine Fußgängerzone.
+Es gibt mehrere Parkmöglichkeiten rund um das Haus (5 bis 10 Minuten zu Fuß).
+Wir empfehlen Ihnen, vor Ihrer Ankunft zu reservieren, um von ermäßigten Angeboten zu profitieren (kostenlose Stornierung bis zu 24 Stunden im Voraus).
+Unsere Empfehlung:
+Parkplatz anmieten auf der Plattform Zenpark, und dann schauen ob es Parkmöglichkeiten bei dieser Adress gibt : 65, rue Brillat Savarin, 75013 Paris. Dieser Parkmöglichkeit ist nur ca 500m von der Villa Paris entfernt.
+Aber Sie können auch andere Plattformen konsultieren, u.a.: zenpark oder yespark
 
 ### Liegt das Haus günstig, um Paris zu besichtigen?
 
@@ -32,4 +37,4 @@ Ja, die wichtigsten Sehenswürdigkeiten erreichen Sie in 15 bis 30 Minuten mit M
 
 ### Wie können Sie uns erreichen?
 
-Telefonisch unter +33 6 73 62 38 45, per E-Mail an contact@la-villa-paris.com oder über das Kontaktformular unten auf der Seite. Das Haus befindet sich in der 33 rue de la Fontaine à Mulard, 75013 Paris.
+Telefonisch unter +33 6 73 62 38 45, oder über das Kontaktformular unten auf dieser Seite. Das Haus befindet sich in der 33 rue de la Fontaine à Mulard, 75013 Paris.
